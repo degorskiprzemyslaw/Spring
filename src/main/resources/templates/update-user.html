@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Create new user</title>
+  <link rel="stylesheet" href="/webjars/bootstrap/5.2.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/webjars/bootstrap/5.2.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+  <form th:object="${user}" th:action="@{/mvc/user/update}" method="post">
+    <div class="mb-3">
+
+      <label for="id" class="form-label">Id:</label>
+      <input id="id" class="form-control" type="text" th:field="*{id}" />
+
+      <label for="firstName" class="form-label">Imię:</label>
+      <input id="firstName" class="form-control" type="text" th:field="*{firstName}" />
+    </div>
+    <div class="mb-3">
+      <label for="lastName" class="form-label">Nazwisko:</label>
+      <input id="lastName" class="form-control" type="text" th:field="*{lastName}" />
+    </div>
+    <div class="mb-3">
+      <label for="login" class="form-label">Login:</label>
+      <input id="login" class="form-control" type="text" th:field="*{login}"/>
+      <div
+              class="invalid-feedback-custom"
+              th:if="${#fields.hasErrors('login')}"
+              th:text="${#fields.errors('login')[0]}"
+      ></div>
+    </div>
+
+
+    <div class="mb-3">
+      <label for="password" class="form-label">Hasło:</label>
+      <input id="password" class="form-control" type="password" th:field="*{password}"/>
+      <div class="invalid-feedback-custom"
+           th:if="${#fields.hasErrors('password')}"
+           th:text="${#fields.errors('password')[0]}"
+      ></div>
+
+    </div>
+    <div>
+      <button type="submit"  class="btn btn-outline-primary" >Zapisz</button>
+    </div>
+  </form>
+</div>
+</body>
+</html>
